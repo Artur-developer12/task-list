@@ -221,8 +221,9 @@
 							<div class="task-item-email"> <?=search_email($row->id_email, $pdo)?> </div>	
 						</div>
 
-						<form action="" method="POST">
-							<input class="form-check" type="checkbox" name="task_check" value="task_succes">
+						<form action="task_success.php" method="POST">
+							<input class="form-check" id="checkbox_task" type="checkbox" name="task_check" value="<?=$row->id?>">
+							<button type="submit" class="btn">отправить</button>
 						</form>
 						
 					</div>
