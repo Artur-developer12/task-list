@@ -10,7 +10,6 @@
 </head>
 <body class="h-100 d-flex flex-column">
 
-<div>	</div>
 
 	 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
 	     <h5 class="my-0 mr-md-auto font-weight-normal">Планировщик</h5>
@@ -197,8 +196,19 @@
 				return $select_id_exit['email'];
 			}	
 
-			$Select = 'SELECT * FROM tasks ORDER BY id DESC';
-			$query = $pdo->query($Select);
+			$page  = isset($_GET['page']) ? $_GET['page'] : 1;
+			$limit = 3;
+			$offset = $limit * ($page - 1);
+
+			$query = $pdo->prepare('SELECT * FROM tasks ORDER BY id DESC LIMIT ? OFFSET ?');
+			$query->bindValue(1, $limit, PDO::PARAM_INT);
+			$query->bindValue(2, $offset, PDO::PARAM_INT);
+			$query->execute();
+
+		 
+
+	 
+
 		 ?>
 
 		 <?php while($row = $query->fetch(PDO::FETCH_OBJ)):?>
@@ -226,21 +236,26 @@
 	<?php endwhile; ?>
 		<!-- /задача -->	
 	</div>
+	<?php  
+	
+			$query = $pdo->query("SELECT COUNT(*) as id FROM tasks");
+			$query->setFetchMode(PDO::FETCH_ASSOC);
+			$length = $query->fetch();
+			$members = $length['id'];
 
 
+			$list = ceil($members / $limit);
+
+	 
+	?>
+ 
 	<footer class="footer mt-auto">
 		<div class="footer-down">
 			<nav aria-label="Page navigation example">
 			  <ul class="pagination justify-content-end">
-			    <li class="page-item disabled">
-			      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Предыдущий</a>
-			    </li>
-			    <li class="page-item"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item">
-			      <a class="page-link" href="#">Следующий</a>
-			    </li>
+				  <?php for ($i=0; $i < $list; $i++):?>
+				<li class="page-item"><a class="page-link" href="/index.php?page=<?=$i + 1?>"> <?=$i + 1?> </a></li>
+				  <?php endfor; ?>
 			  </ul>
 			</nav>
  		</div>
