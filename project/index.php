@@ -220,17 +220,15 @@
 							<h4 class="task-item-name"> <?=search_name($row->id_name, $pdo)?> </h4>
 							<div class="task-item-email"> <?=search_email($row->id_email, $pdo)?> </div>	
 						</div>
-
-						<form action="task_success.php" method="POST">
-							<input class="form-check" id="checkbox_task" type="checkbox" name="task_check" value="<?=$row->id?>">
-							<button type="submit" class="btn">отправить</button>
-						</form>
+					 	<div class="form-success">
+							 <input class="form-check" id="checkbox_task" type="checkbox" name="task_check" value="<?=$row->id?>">
+						 </div>						 				 
 						
 					</div>
 				 
 					<div class="task-item-text"> <?=$row->task_text?> </div>
 					  	
-					<div class="task-item-status task-item-status--not_completed">не выполнено</div>
+					<div id="task_status" class="task-item-status task-item-status--not_completed">не выполнено</div>
 				</div>
 			</div>				
 		</div>	 
