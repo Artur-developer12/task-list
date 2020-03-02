@@ -10,6 +10,8 @@
 </head>
 <body class="h-100 d-flex flex-column">
 
+<div>	</div>
+
 	 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
 	     <h5 class="my-0 mr-md-auto font-weight-normal">Планировщик</h5>
 	<?php if(isset($_SESSION['user'])): ?>
