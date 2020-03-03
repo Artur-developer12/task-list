@@ -220,15 +220,22 @@
 							<h4 class="task-item-name"> <?=search_name($row->id_name, $pdo)?> </h4>
 							<div class="task-item-email"> <?=search_email($row->id_email, $pdo)?> </div>	
 						</div>
-					 	<div class="form-success">
-							 <input class="form-check" id="checkbox_task" type="checkbox" name="task_check" value="<?=$row->id?>">
-						 </div>						 				 
+
+						 <input class="form-check" id="checkbox_task" type="checkbox" name="task_check" value="<?=$row->id?>"  <?php if($row->status == 1) echo 'checked'; else echo ''; ?>>
+					 				 				 
 						
 					</div>
 				 
 					<div class="task-item-text"> <?=$row->task_text?> </div>
-					  	
-					<div id="task_status" class="task-item-status task-item-status--not_completed">не выполнено</div>
+
+					<?php if($row->status ==1):	?>
+						<div id="task_status" class="task-item-status task-item-status--completed">выполнено</div>
+					<?php else: ?>
+						<div id="task_status" class="task-item-status task-item-status--not_completed">не выполнено</div>
+					 <?php endif;?>
+
+
+
 				</div>
 			</div>				
 		</div>	 
