@@ -176,20 +176,7 @@
 			</div>
 		</div>
 		<!-- задача -->
-		<?php  require'add_db.php'; 
-
-			$page  = isset($_GET['page']) ? $_GET['page'] : 1;
-			$limit = 3;
-			$offset = $limit * ($page - 1);
-
-
-			$query = $pdo->prepare('SELECT * FROM tasks INNER JOIN names ON tasks.id_name = names.id INNER JOIN emails ON tasks.id_email = emails.id ORDER BY tasks.id DESC LIMIT ? OFFSET ?');
-			$query->bindValue(1, $limit, PDO::PARAM_INT);
-			$query->bindValue(2, $offset, PDO::PARAM_INT);
-			$query->execute();
-
-
-		?>
+		<?php  require'sorting.php'; ?>
 
 		 <?php while($row = $query->fetch(PDO::FETCH_OBJ)):?>
 		<div class="row  align-items-center flex-column"> 
@@ -197,7 +184,7 @@
 				<div class="task-item mb-3">
 					<div class="task-item-header">
 						<div class="task-item-header-text">
-							<h4 class="task-item-name"> <?=$row->name?> </h4>
+							<h4 class="task-item-name"> <?=$row->name ?> </h4>
 							<div class="task-item-email"> <?=$row->email?> </div>	
 						</div>
 
