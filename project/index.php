@@ -200,6 +200,8 @@
 			$limit = 3;
 			$offset = $limit * ($page - 1);
 
+
+
 			$query = $pdo->prepare('SELECT * FROM tasks ORDER BY id DESC LIMIT ? OFFSET ?');
 			$query->bindValue(1, $limit, PDO::PARAM_INT);
 			$query->bindValue(2, $offset, PDO::PARAM_INT);
@@ -225,8 +227,14 @@
 					 				 				 
 						
 					</div>
-				 
-					<div class="task-item-text"> <?=$row->task_text?> </div>
+
+				 	<a href="#" id="task_change" class="tast-item-link">изменить</a>
+					<div class="task-item-text" id="task-text-show"> <?=$row->task_text?> </div>
+
+					<form action="task_change.php" method="POST" id="task_text" class="d-none task-item-from">
+						<textarea name="task_text" class="task-text-change" id="textarea_task"  data-name="<?=$row->id?>" > <?=$row->task_text?> </textarea>
+						<button id="task-item-submit" class="task-item-submit" type="submit">сохранить</button>
+					</form>
 
 					<?php if($row->status ==1):	?>
 						<div id="task_status" class="task-item-status task-item-status--completed">выполнено</div>
