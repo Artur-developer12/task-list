@@ -6,7 +6,6 @@
 	$email = filter_var(trim($_POST['email']));  
 	$password = filter_var(trim($_POST['password']));
 
-
 	function record_search($email, $pdo){
 		$sql = "SELECT EXISTS(SELECT email FROM emails WHERE email =:email LIMIT 1)";
 		$query = $pdo->prepare($sql);
@@ -54,7 +53,13 @@
 
 		$_SESSION['message_title'] = 'регистрация';
 		$_SESSION['message'] = "Регистрация прошла успешно";
+ 
+		$_SESSION['user'] = 1;
+		$_SESSION['user_name'] = $name;
+		$_SESSION['user_email'] = $email;
+
 		header('Location: index.php');
+ 
 
 		}
 

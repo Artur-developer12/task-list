@@ -12,11 +12,13 @@
 
 
 	 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+	  
 	     <h5 class="my-0 mr-md-auto font-weight-normal">Планировщик</h5>
+ 
 	<?php if(isset($_SESSION['user'])): ?>
 		<div class="header-user">
-			<h3 class="header-user-login"><?= $_SESSION['user_email']?></h3>
 			<h3 class="header-user-login"><?= $_SESSION['user_name']?></h3>
+			<h3 class="header-user-login"><?= $_SESSION['user_email']?></h3>
 			<img class="header-user-icon mr-2" src="img/user.svg" alt="">
 			<a class="btn btn-danger" href="logout.php">выход</a>
 		</div>
@@ -39,10 +41,10 @@
 			      </div>
 			      <div class="modal-body">
 			      	<!-- Форма регистраций -->
-			       <form action="registration.php" class="form-header" method="POST">
-			       		<input type="text" name="name" placeholder="Введите имя" class="form-header-item form-control mb-2">
-				  		<input type="email" name="email" placeholder="Введите email" class="form-header-item form-control mb-2">
-				  		<input type="password" name="password" placeholder="Введите пароль" class=" form-header-item  form-control">
+			       <form action="registration.php" class="form-header needs-validation" method="POST">
+			       		<input type="text" id="validationTooltip01" name="name" placeholder="Введите имя" class="form-header-item form-control mb-2">
+				  		<input type="email" id="validationTooltip02" name="email" placeholder="Введите email" class="form-header-item form-control mb-2">
+				  		<input type="password" id="validationTooltip03" name="password" placeholder="Введите пароль" class=" form-header-item  form-control">
 						<div class="modal-footer">
 				       		<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
 				        	<button type="submit" class="btn btn-primary">Отправить</button>
@@ -93,13 +95,13 @@
 					  </div>
 					  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 					  	<!-- Форма входа Админа -->
-					  	<form action="" class="form-header" method="POST">
-					  		<input type="email" name="admin_email" placeholder="Введите email" class="form-header-item2 form-control mb-2">
+					  	<form action="admin.php" class="form-header" method="POST">
+					  		<input type="text" name="admin_name" placeholder="Введите имя" class="form-header-item2 form-control mb-2">
 					  		<input type="password" name="admin_password" placeholder="Введите пароль" class=" form-header-item2  form-control">
 
 					  		<div class="modal-footer">
 						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-						        <button type="button" class="btn btn-primary">отправить</button>
+						        <button type="submit" class="btn btn-primary">отправить</button>
 						    </div>
 
 					  	</form>
@@ -156,19 +158,19 @@
 	<div class="container">
 		<div class="row">
 			<div class="col d-flex justify-content-end">
-				<form action="" class="sort" method="POST">
+				<form action="sorting.php" class="sort" method="POST">
 					<div class="sort-select">
-						<select name="sort" id="">
-							<option value="ascending">возрастанию</option>
-							<option value="descending">убыванию</option>
+						<select name="sort_line" id="sort_line">
+							<option value="ASC ">возрастанию</option>
+							<option value="DESC">убыванию</option>
 						</select>
 
-						<select name="sort_2" id="">
+						<select name="sort_column" id="sort_column">
 							<option value="name">Имя</option>
 							<option value="email">Email</option>
 							<option value="status">Статус</option>
 						</select>
-						<button type="submit" class="btn">Сортировать</button>
+						<button  id="sorting_btn" type="submit" class="btn">Сортировать</button>
 					</div>
 					
 					 
@@ -187,13 +189,19 @@
 							<h4 class="task-item-name"> <?=$row->name ?> </h4>
 							<div class="task-item-email"> <?=$row->email?> </div>	
 						</div>
-
-						 <input class="form-check" id="checkbox_task" type="checkbox" name="task_check" value="<?=$row->id?>"  <?php if($row->status == 1) echo 'checked'; else echo ''; ?>>
+							
+					 	<?php if (isset($_SESSION['admin'])): ?>
+							 <input class="form-check" id="checkbox_task" type="checkbox" name="task_check" value="<?=$row->id?>"  <?php if($row->status == 1) echo 'checked'; else echo ''; ?>>
+						<?php endif; ?>
+					 
+						
 					 				 				 
 						
 					</div>
-
-				 	<a href="#" id="task_change" class="tast-item-link">изменить</a>
+					<?php if (isset($_SESSION['admin'])): ?>
+						<a href="#" id="task_change" class="tast-item-link">изменить</a>
+					<?php endif ?>
+				 	
 					<div class="task-item-text" id="task-text-show"> <?=$row->task_text?> </div>
 
 					<form action="task_change.php" method="POST" id="task_text" class="d-none task-item-from">
@@ -225,6 +233,8 @@
 
 			$list = ceil($members / $limit);
 
+
+
 	 
 	?>
  
@@ -233,7 +243,7 @@
 			<nav aria-label="Page navigation example">
 			  <ul class="pagination justify-content-end">
 				  <?php for ($i=0; $i < $list; $i++):?>
-				<li class="page-item"><a class="page-link" href="/index.php?page=<?=$i + 1?>"> <?=$i + 1?> </a></li>
+				<li class="page-item <?php if($i + 1 == $_GET['page']) echo 'active'; else echo ''; ?>"><a class="page-link " href="/index.php?page= <?=$i + 1?>"> <?=$i + 1?> </a></li>
 				  <?php endfor; ?>
 			  </ul>
 			</nav>
@@ -247,6 +257,7 @@
 
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/validator.min.js"></script>	
 	<script src="js/main.js"></script>
 
 

@@ -60,5 +60,37 @@
                             
                     });
                 });
+
+                $(this).siblings("#textarea_task").attr
             });
+
+
+             // Сортировка
+            // $('#sorting_btn').click(function(event) {
+            //       event.preventDefault()
+
+            //         var sort_column = $('#sort_column').val(); 
+            //         var sort_line =  $('#sort_line').val();
+            //         console.log(sort_column);
+            //         console.log(sort_line);
+
+            //         $.ajax({
+            //                 url: 'sorting.php',
+            //                 type: 'POST',
+            //                 data: {
+            //                     sort_column: sort_column,
+            //                     sort_line: sort_line,
+            //                 },
+            //                 success: function(data) {
+            //                     location.reload();
+            //                 }
+                            
+            //         });
+            // });
+
+
+    
+            
+                 
+            
 });

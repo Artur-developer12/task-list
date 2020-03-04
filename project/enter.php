@@ -38,16 +38,17 @@
 		$_SESSION['user_name'] = $user_name['name'];
 		$_SESSION['user_email'] = "$email";
 		header('Location: index.php');
-
 	}
 	else{
 		$_SESSION['message'] = 'неправильный логин или пароль';
 		$_SESSION['message_title'] = 'вход';
 		header('Location: index.php');
-
-
 	}
 
+}else{
+	$_SESSION['message'] = 'Заполните все поля';
+	$_SESSION['message_title'] = 'Ошибка';
+	header('Location: index.php');  
 }
 	 
  
