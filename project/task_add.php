@@ -8,7 +8,7 @@
 
 	require'add_db.php';
 
-	$task_form = filter_var(trim($_POST['task']));
+	$task_form = strip_tags(filter_var(trim($_POST['task'])));
 
 	if (!empty($task_form)){
 

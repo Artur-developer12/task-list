@@ -9,7 +9,7 @@
 
 			$sort_column = "tasks.id";
 
-			$sql_1 = "SELECT tasks.id, tasks.task_text, tasks.status, names.name, emails.email FROM tasks INNER JOIN names ON tasks.id_name = names.id INNER JOIN emails ON tasks.id_email = emails.id ORDER BY tasks.id DESC LIMIT :lim OFFSET :off";
+			$sql_1 = "SELECT tasks.id, tasks.task_text, tasks.status, tasks.task_change, names.name, emails.email FROM tasks INNER JOIN names ON tasks.id_name = names.id INNER JOIN emails ON tasks.id_email = emails.id ORDER BY tasks.id DESC LIMIT :lim OFFSET :off";
 
  			
 		 

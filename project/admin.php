@@ -2,8 +2,8 @@
 	session_start();
 	require 'add_db.php';
 
-	$name = filter_var(trim($_POST['admin_name']));  
-	$password = filter_var(trim($_POST['admin_password']));
+	$name = strip_tags(filter_var(trim($_POST['admin_name'])));  
+	$password = strip_tags(filter_var(trim($_POST['admin_password'])));
 
 
 	if(!empty($name) && !empty($password)){

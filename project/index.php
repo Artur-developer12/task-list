@@ -6,14 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/main.css">
-	<title>Задачник</title>
+	<title>приложение-задачник </title>
 </head>
 <body class="h-100 d-flex flex-column">
 
 
 	 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
 	  
-	     <h5 class="my-0 mr-md-auto font-weight-normal">Планировщик</h5>
+	     <h5 class="my-0 mr-md-auto font-weight-normal">Тестовое задание для BeeJee</h5>
  
 	<?php if(isset($_SESSION['user'])): ?>
 		<div class="header-user">
@@ -208,12 +208,18 @@
 						<textarea name="task_text" class="task-text-change" id="textarea_task"  data-name="<?=$row->id?>" > <?=$row->task_text?> </textarea>
 						<button id="task-item-submit" class="task-item-submit" type="submit">сохранить</button>
 					</form>
+					<div class="task-item-change-block">
+					 
+							<div class="task-item-change-text"> <?=$row->task_change?> </div>
+				 
 
-					<?php if($row->status ==1):	?>
-						<div id="task_status" class="task-item-status task-item-status--completed">выполнено</div>
-					<?php else: ?>
-						<div id="task_status" class="task-item-status task-item-status--not_completed">не выполнено</div>
-					 <?php endif;?>
+						<?php if($row->status == 1):?>
+							<div id="task_status" class="task-item-status task-item-status--completed">выполнено</div>
+						<?php else: ?>
+							<div id="task_status" class="task-item-status task-item-status--not_completed">не выполнено</div>
+						 <?php endif;?>
+					</div>
+					
 
 
 
@@ -251,7 +257,7 @@
  
 
 		<div class="footer-block shadow-sm text-center   bg-white py-3 text-muted">
-		    <span >Тестовое задание для BeeJee</span>
+		    <div>Выполнил Дышеков Артур</div>
 		</div>
 	</footer>
 

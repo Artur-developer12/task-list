@@ -2,8 +2,8 @@
 	session_start();
 	require 'add_db.php';
 
-	$email = filter_var(trim($_POST['email']));  
-	$password = filter_var(trim($_POST['password']));
+	$email = strip_tags(filter_var(trim($_POST['email'])));  
+	$password = strip_tags(filter_var(trim($_POST['password'])));
 
 	if (!empty($email) && !empty($password)) {
 

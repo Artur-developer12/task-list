@@ -2,9 +2,9 @@
 	session_start();
 	require'add_db.php';
 
-	$name = filter_var(trim($_POST['name'])); 
-	$email = filter_var(trim($_POST['email']));  
-	$password = filter_var(trim($_POST['password']));
+	$name = strip_tags(filter_var(trim($_POST['name']))); 
+	$email = strip_tags(filter_var(trim($_POST['email'])));  
+	$password = strip_tags(filter_var(trim($_POST['password'])));
 
 	function record_search($email, $pdo){
 		$sql = "SELECT EXISTS(SELECT email FROM emails WHERE email =:email LIMIT 1)";

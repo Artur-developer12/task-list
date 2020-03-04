@@ -20,7 +20,7 @@
                             
                         });
 
-                        $(this).parent().nextAll('#task_status').text('выполнено').addClass("task-item-status--completed");
+                        $(this).parent().nextAll('.task-item-change-block').children('#task_status').text('выполнено').addClass("task-item-status--completed");
                    }
                 });
             });
@@ -61,7 +61,7 @@
                     });
                 });
 
-                $(this).siblings("#textarea_task").attr
+                
             });
 
 

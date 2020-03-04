@@ -107,6 +107,22 @@ body {
   color: #5bc420;
 }
 
+.task-item-change-block {
+  margin-top: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.task-item-change-text {
+  color: #ff4c4c;
+}
+
 .form-header {
   display: -webkit-box;
   display: -webkit-flex;
