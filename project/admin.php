@@ -24,7 +24,9 @@
 		}
 
 	}else{
-		echo 'введите поле';
+		$_SESSION['message'] = 'Заполните все поля';
+		$_SESSION['message_title'] = 'Ошибка';
+		header('Location: index.php');  
 	}
 
 

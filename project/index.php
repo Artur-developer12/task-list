@@ -160,15 +160,15 @@
 			<div class="col d-flex justify-content-end">
 				<form action="" class="m-4 d-flex"  method="GET">
 					<select name="sort" class="custom-select mr-2" id="inlineFormCustomSelect">
-						<option value="names.name">имя</option>
-						<option value="emails.email">email</option>
-						<option value="tasks.status">статус</option>
+						<option <?php if($_GET['sort'] == 'names.name') echo "selected"; else echo ""; ?>  value="names.name">имя</option>
+						<option <?php if($_GET['sort'] == 'emails.email') echo "selected"; else echo ""; ?> value="emails.email">email</option>
+						<option <?php if($_GET['sort'] == 'tasks.status') echo "selected"; else echo ""; ?> value="tasks.status">статус</option>
 					</select>
 					<select name="ascend" id="" class="custom-select mr-2"  id="inlineFormCustomSelect">
-						<option value="ASC">возрастанию</option>
-						<option value="DESC">убыванию</option>
+						<option <?php if($_GET['ascend'] == 'ASC') echo "selected"; else echo ""; ?>  value="ASC">возрастанию</option>
+						<option <?php if($_GET['ascend'] == 'DESC') echo "selected"; else echo ""; ?> value="DESC">убыванию</option>
 					</select>
-					<button class="btn btn-primary" type="submit">отправить</button>
+					<button class="btn btn-primary" type="submit">сортировать</button>
 				</form>
 
 			</div>
@@ -204,8 +204,8 @@
 					<div class="task-item-text" id="task-text-show"> <?=$row->task_text?> </div>
 
 					<form action="task_change.php" method="POST" id="task_text" class="d-none task-item-from">
-						<textarea name="task_text" class="task-text-change" id="textarea_task"  data-name="<?=$row->id?>" > <?=$row->task_text?> </textarea>
-						<button id="task-item-submit" class="task-item-submit" type="submit">сохранить</button>
+						<textarea name="task_text" class="task-text-change form-control" id="textarea_task"  data-name="<?=$row->id?>" > <?=$row->task_text?> </textarea>
+						<button id="task-item-submit" class="task-item-submit mt-2  btn btn-primary" type="submit">сохранить</button>
 					</form>
 					<div class="task-item-change-block">
 					 
