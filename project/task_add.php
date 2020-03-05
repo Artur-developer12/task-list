@@ -42,8 +42,8 @@
 		$query = $pdo->prepare($insert);
 		$query->execute(['id_name'=>$id_name, 'id_email'=>$id_email, 'task_text'=>$task_form]);
 
-		$_SESSION['message_title'] = 'успешно';
-		$_SESSION['message'] = "Задача добавлена";
+		$_SESSION['message_title'] = 'Добавление задачи';
+		$_SESSION['message'] = "Успешно";
 
 		header('Location: index.php');
 	}else{

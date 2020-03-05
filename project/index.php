@@ -158,17 +158,17 @@
 	<div class="container">
 		<div class="row">
 			<div class="col d-flex justify-content-end">
-				<form action="" class="m-4" method="GET">
-					<select name="sort" id="">
+				<form action="" class="m-4 d-flex"  method="GET">
+					<select name="sort" class="custom-select mr-2" id="inlineFormCustomSelect">
 						<option value="names.name">имя</option>
 						<option value="emails.email">email</option>
 						<option value="tasks.status">статус</option>
 					</select>
-					<select name="ascend" id="">
+					<select name="ascend" id="" class="custom-select mr-2"  id="inlineFormCustomSelect">
 						<option value="ASC">возрастанию</option>
 						<option value="DESC">убыванию</option>
 					</select>
-					<button type="submit">отправить</button>
+					<button class="btn btn-primary" type="submit">отправить</button>
 				</form>
 
 			</div>
