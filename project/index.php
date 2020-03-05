@@ -158,23 +158,22 @@
 	<div class="container">
 		<div class="row">
 			<div class="col d-flex justify-content-end">
-				<form action="sorting.php" class="sort" method="POST">
-					<div class="sort-select">
-						<select name="sort_line" id="sort_line">
-							<option value="ASC ">возрастанию</option>
-							<option value="DESC">убыванию</option>
-						</select>
-
-						<select name="sort_column" id="sort_column">
-							<option value="name">Имя</option>
-							<option value="email">Email</option>
-							<option value="status">Статус</option>
-						</select>
-						<button  id="sorting_btn" type="submit" class="btn">Сортировать</button>
-					</div>
-					
-					 
+				<form action="" class="m-4" method="GET">
+					<select name="sort" id="">
+						<option value="names.name">имя</option>
+						<option value="emails.email">email</option>
+						<option value="tasks.status">статус</option>
+					</select>
+					<select name="ascend" id="">
+						<option value="ASC">возрастанию</option>
+						<option value="DESC">убыванию</option>
+					</select>
+					<button type="submit">отправить</button>
 				</form>
+
+			</div>
+
+			  
 			</div>
 		</div>
 		<!-- задача -->
@@ -249,7 +248,9 @@
 			<nav aria-label="Page navigation example">
 			  <ul class="pagination justify-content-end">
 				  <?php for ($i=0; $i < $list; $i++):?>
-				<li class="page-item <?php if($i + 1 == $_GET['page']) echo 'active'; else echo ''; ?>"><a class="page-link " href="/index.php?page= <?=$i + 1?>"> <?=$i + 1?> </a></li>
+				<li class="page-item <?php if($i + 1 == $_GET['page']) echo 'active'; else echo ''; ?>">
+					<a class="page-link " href= "index.php?<?php echo get_param( $_GET['sort'], $_GET['ascend'], $i)?>"> <?=$i + 1?> </a>
+				</li>
 				  <?php endfor; ?>
 			  </ul>
 			</nav>
@@ -262,8 +263,8 @@
 	</footer>
 
 	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/validator.min.js"></script>	
 	<script src="js/main.js"></script>
 
 
